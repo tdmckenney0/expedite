@@ -1,0 +1,438 @@
+/* Everything */
+
+@media all {
+
+	* {
+		font-family: Calibri, Trebuchet MS, Helvetica, sans-serif;
+	}
+
+	td * { 
+		vertical-align: top !important; margin: 0 !important; 
+	} 
+	
+	thead th { 
+		background: #dcdcdc !important;
+		color: #000 !important;
+	} 
+
+	td .ui-button-icon-secondary { 
+		margin-top: -8px !important; 
+	}
+	
+	table.admin_progress_report .yellow,
+	table.admin_progress_report .orange,
+	table.admin_progress_report .red  {
+		color: transparent !important;
+	}
+	
+	td.yellow {
+		background-color: #fff6bf !important;
+	}
+	
+	td.orange {
+		background-color: #F85 !important;
+	}
+	
+	td.red {
+		background-color: #8a1f11 !important; 
+		color: #FFF !important;
+	}
+	
+	td.green {
+		background-color: #e6efc2 !important;
+	}
+	
+	td.black {
+		background-color: #696969 !important;
+	}
+	
+	h1, h2 {
+		font-family: Calibri, Trebuchet MS, Helvetica, sans-serif;
+		font-weight: 500 !important;
+	}
+	
+	.ui-menu-item > a:hover {
+		color: #FFF !important;
+	} 
+	
+	input.modified, select.modified, .success, .unsaved {
+		background-image: none !important; 
+		background-color: #AFA !important;
+		border-color: #DDD !important;
+	}
+	
+	input.error, select.error {
+		background-image: none !important; 
+		background-color: #fbe3e4 !important;
+		color: #8a1f11 !important;
+		border-color: #fbc2c4 !important;
+	}
+	
+	legend {
+		font-weight: 500;
+		padding: 0.25em;
+		font-size: 1.35em;
+	}
+	
+	.mce-fullscreen .mce-tinymce { 
+		z-index: 10002 !important;
+	}
+	
+	.mce-fullscreen .toolbar {
+		display: none !important;	
+	}
+	
+	.loading { 
+		display: none; 
+	}
+
+	.screen { 
+		z-index: 10000 !important; 
+	}
+	
+	.indent {
+		padding-left: 2.5em;
+		font-style: italic;
+	}
+	
+	.thinking { 
+		width: 30%;
+		float: left;
+		position: fixed;
+		top: 35%;
+		left: 35%;
+		padding: 1em;
+		z-index: 10004 !important;
+	}
+	
+	.accordion-tag {
+		padding: 0.25em; 
+		margin-left: 0.5em;
+		border-width: 1px;
+		border-style: solid;
+	}
+
+	.accordion-tag.reminder {
+		background: #FAA; 
+		border-color: #F88;
+		color: #000; 
+	}
+
+	.accordion-tag.assigned {
+		background: #AAF; 
+		border-color: #88F;
+		color: #000; 
+	}
+
+	.accordion-tag.tracking {
+		color: #000;
+		background: #AFA; 
+		border-color: #5F5;
+	}
+	
+	.toolbar {
+		display: none;
+		width: 100%; 
+		min-width: 1024px;
+		height: 2.75em;
+		position: fixed;
+		z-index: 9000; 
+		padding: 0em 0.10em;
+	}
+	
+	.toolbar .left {
+		position: absolute;
+	}
+	
+	.toolbar .right {
+		position: absolute;
+		right: 0.20em;
+		padding-right: 0.20em;
+	}
+	
+	.toolbar .breadcrumb {
+		float: left;
+		display: inline;
+		position: relative;
+		margin: 0em 0.15em; 
+	}
+	
+	.toolbar .function {
+		display: block; 
+		width: auto;
+		float: left;
+		margin: 0em 0.10em;
+	}
+	
+	.toolbar .search input {
+		padding: 0.50em 1em;
+		margin: 0em 0.20em 0em 0.10em;
+		width: 10em;
+		float: left;
+	}
+		
+	
+	.toasts {
+		display: none; 
+		text-align: center;
+		margin: 0em auto;
+		width: 25%;
+		padding: 0.25em;
+		z-index: 8000 !important;
+		position: fixed;
+		left: 37.5%;
+		top: 2.5em;
+	}
+
+	.toasts div {
+		margin: 0.5em auto;
+		z-index: -1000;
+	}
+
+	/* Expedite Dialog Widget */
+	
+		.expedite-dialog-container {
+			display: block;
+			z-index: 8000;
+			position: fixed; 
+			width: 100%;
+		}
+		
+		.expedite-dialog {
+			display: none;
+			width: 10em;
+			max-width: 960px;
+			min-width: 10.0em;
+			max-height: 100%;
+			height: auto;
+			padding: 1.0em;
+			padding-top: 3.0em;
+			margin: 0em auto !important;
+			overflow-y: auto;
+			overflow-x: hidden; 
+			z-index: 9000;
+		}
+		
+		.expedite-dialog textarea {
+			display: none;
+		}
+		
+	/* Main Frame */
+	
+		.content { 
+			margin-top: 5em !important; 
+			display: none; 
+		}
+	
+	/* Menu Widget */
+	
+		.expedite-menu {  
+			position: absolute;
+			z-index: 10000;
+			min-width: 10em; 
+		}
+		
+		.expedite-menu .ui-icon {
+			margin-top: 0.25em !important;	
+			margin-bottom: 0.25em !important;	
+		}
+
+		.expedite-menu li a {
+			padding-top: 0.25em !important;	
+			padding-bottom: 0.25em !important;	
+		}
+		
+		td .expedite-menu-trigger {
+			width: 100%;
+			text-align: left; 
+		}
+		
+	/* Button Management */
+	
+		.buttons, fieldset.actions {
+			padding: 0.25em;
+			text-align: center; 
+		}
+		
+		.buttons .ui-button {
+			margin-bottom: 0.25em;
+		}
+		
+		a.delete:link {
+			background-color: #fbe3e4 !important;
+			border-color:#fbc2c4 !important;
+			color: #8a1f11 !important;
+			background-image: none !important;
+		}
+		
+		a.delete:hover {
+			background-color: #8a1f11 !important;
+			border-color:#8a1f11 !important;
+			color: #fbe3e4 !important;
+		}
+		
+		a.primary {
+			background:#d5edf8 !important;
+			color:#205791 !important;
+			border-color:#92cae4 !important;
+			background-image: none !important;
+		}
+		
+		a.primary:hover {
+			background:#205791 !important;
+			color:#fff !important;
+			border-color:#205791 !important;
+		}
+		
+	/* jQuery dataTables Integration */
+
+		.dataTables_wrapper .DataTables_sort_icon {
+			float: right;
+		}
+		
+		.dataTables_wrapper thead, .dataTables_wrapper .fg-toolbar {
+			position: static !important;
+		}
+		
+		.dataTables_wrapper th {
+			cursor: pointer !important;
+		}
+		
+		th.ui-state-default {
+			border-width: 1px 1px 1px 0px !important;
+		} 
+		
+		table tbody td {
+			cursor: cell !important;
+			border: solid #DDD;
+			border-width: 0px 1px 1px 0px;
+		}
+		
+		tr:hover td {
+			background-color: #CCC !important;
+			color: #000;
+		}
+		
+		tr td:hover {
+			background-color: #135786 !important;
+			color: #FFF;
+		}
+		
+		.dataTables_wrapper .fg-button, .dataTables_wrapper .fg-toolbar div {
+			padding: 0.25em 0.75em !important;
+		}
+
+		.dataTables_wrapper .dataTables_info, .dataTables_wrapper .fg-button {
+			margin: 0.25em !important;
+		}
+
+		.dataTables_wrapper .fg-toolbar div {
+			display: inline-block; 
+		}
+
+		.dataTables_wrapper .dataTables_filter {
+			float: right;
+		}  
+		
+	/* CakePHP Input Widget */
+	
+		input, select {
+			border-style: solid !important;
+			border-width: 1px;
+		}
+	
+		.input {
+			min-width: 16em;
+			padding: 0.5em;
+			display: block;
+			text-align: right;
+			min-height: 2em;
+		}
+		
+		.input label {
+			display: block;
+			vertical-align: middle;
+			text-align: left !important;
+			font-weight: 500;
+			margin-right: auto;
+			margin-left: 0;
+		}
+
+		.input input, .input select, .input button, .input p {
+			margin-top: -1.5em;
+			margin-left: auto; 
+			margin-right: 0;
+			padding: 0.10em;
+			display: block; 
+			vertical-align: middle; 
+		}
+        
+        .input select {
+            margin-top: -2.0em;
+            display: inline-block;
+        }
+		
+		.input .char { 
+			display: inline;
+			float: right;
+			position: relative;
+			top: -1.50em;
+			right: 8.5em;
+			padding-right: 0.25em;
+		}
+		
+		.percent input, .currency input { 
+			width: 8em;
+		} 
+		
+		.currency .char {
+			right: 9.25em !important;
+		}
+		
+		.percent .char {
+			right: -1.40em;
+		}
+		
+		.date { 
+			height: 2em; 
+		}
+		
+		.date select { 
+			margin-top: -2.75em; 
+		}
+
+	/* Inline Input Widget */
+	
+		.inline_input .input label {
+			display: block !important;
+			float: none !important;
+			width: inherit;
+		}
+
+		.inline_input .input input, .inline_input .input select {
+			display: block !important;
+			float: none !important;
+			width: inherit;
+			margin-left: 0em !important;
+			margin-right: auto !important;
+			margin-top: auto !important;
+		}
+
+	/* Special Classes for Specifications */
+	
+		.eligibility input, .eligibility select {
+			width: 5em !important;
+			display: block !important;
+			float: none !important;
+			width: inherit !important;
+			margin-left: 0em !important;
+			margin-right: auto !important;
+			margin-top: auto !important;
+		}
+		
+		table.no-stripe tr:nth-child(even) td {
+			background: transparent;
+		}
+		
+	/* End Screen */
+}
