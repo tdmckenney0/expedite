@@ -6,15 +6,13 @@ class Survey extends SurveysAppModel {
 
 	public $displayField = 'name';
     public $virtualFields = array(
-        'search' => 'CONCAT_WS("|",
-			Survey.name
-		)'
+        'search' => 'Survey.name'
     );
-    
+
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

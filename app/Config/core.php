@@ -110,7 +110,7 @@
  * included primarily as a development convenience - and
  * thus not recommended for production applications.
  */
-	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
+	Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 
 /**
  * To configure CakePHP to use a particular domain URL
@@ -220,7 +220,7 @@
  * the cake shell command: cake schema create Sessions
  */
 	Configure::write('Session', array(
-		'defaults' => 'database'
+		'defaults' => 'php'
 	));
 
 /**
@@ -271,8 +271,8 @@
  * Uncomment this line and correct your server timezone to fix
  * any date & time related errors.
  */
- 
- date_default_timezone_set('America/New_York'); // Needs set if moving between servers. 
+
+ date_default_timezone_set('America/New_York'); // Needs set if moving between servers.
 
 /**
  * `Config.timezone` is available in which you can set users' timezone string.

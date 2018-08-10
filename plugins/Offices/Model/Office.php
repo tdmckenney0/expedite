@@ -8,19 +8,13 @@ class Office extends AppModel {
 	public $actsAs = array('Containable');
 	public $virtualFields = array(
 		'name' => 'Office.city',
-		'search' => 'CONCAT_WS("|",
-			Office.city,
-			Office.address,
-			Office.state,
-			Office.zip,
-			Office.phone
-		)' 
+		'search' => 'Office.city'
 	);
 
 	public $validate = array(
 		'address' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -30,7 +24,7 @@ class Office extends AppModel {
 		),
 		'city' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -44,7 +38,7 @@ class Office extends AppModel {
 		),
 		'state' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -54,7 +48,7 @@ class Office extends AppModel {
 		),
 		'zip' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -64,7 +58,7 @@ class Office extends AppModel {
 		),
 		'phone' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -73,7 +67,7 @@ class Office extends AppModel {
 			),
 		),
 	);
-    
+
     public $hasAndBelongsToMany = array(
         'User' => array(
 			'className' => 'Users.User',

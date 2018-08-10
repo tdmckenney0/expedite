@@ -3,17 +3,13 @@
 App::uses('PermissionsAppModel', 'Permissions.Model');
 
 class RequestedUrl extends PermissionsAppModel {
-	
+
 	public $displayField = 'action';
 	public $enumerations = array();
 	public $virtualFields = array(
-		'search' => 'CONCAT_WS("|",
-			RequestedUrl.controller,
-			RequestedUrl.action,
-			IFNULL((SELECT ug.name FROM user_groups ug WHERE ug.id = RequestedUrl.user_group_id), "General")
-		)' 
+		'search' => 'RequestedUrl.controller'
 	);
-	
+
 	public $validate = array(
 		'user_group_id' => array(
 			'numeric' => array(
@@ -27,7 +23,7 @@ class RequestedUrl extends PermissionsAppModel {
 		),
 		'controller' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,
@@ -37,7 +33,7 @@ class RequestedUrl extends PermissionsAppModel {
 		),
 		'action' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,

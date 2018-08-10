@@ -1,5 +1,5 @@
 <?php
-	
+
 App::uses('DocumentsAppModel', 'Documents.Model');
 App::uses('AuthComponent', 'Controller/Component');
 App::uses('File', 'Utility');
@@ -8,17 +8,12 @@ App::uses('Folder', 'Utility');
 class Document extends DocumentsAppModel {
 
 	public $displayField = 'filename';
-	public $actsAs = array('Containable'); 
+	public $actsAs = array('Containable');
     public $order = "Document.created DESC";
 	public $virtualFields = array(
-		'search' => 'CONCAT_WS("|",
-			Document.filename,
-			Document.description,
-			Document.mimetype,
-			Document.created
-		)' 
+		'search' => 'Document.filename'
 	);
-	
+
 	public $validate = array(
 		'user_id' => array(
 			'numeric' => array(
@@ -42,7 +37,7 @@ class Document extends DocumentsAppModel {
 		),
 		'filename' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -52,7 +47,7 @@ class Document extends DocumentsAppModel {
 		),
 		'description' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -62,7 +57,7 @@ class Document extends DocumentsAppModel {
 		),
 		'mimetype' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -71,7 +66,7 @@ class Document extends DocumentsAppModel {
 			),
 		),
 	);
-	
+
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'Users.User',
@@ -81,17 +76,23 @@ class Document extends DocumentsAppModel {
 			'order' => ''
 		)
 	);
-	
+
 	// Internal Parsing Functions //
-	
+
 	protected function getPath($name = null) {
 		$path = array(ROOT, 'plugins', 'Documents', 'Storage');
-		if(!empty($name)) {
-			$path[] = $name;
+		$path = implode(DS, $path);
+
+		if(!file_exists($path)) {
+			mkdir($path);
 		}
-		return implode(DS, $path);
+
+		if(!empty($name)) {
+			$path .= DS . $name;
+		}
+		return trim($path);
 	}
-	
+
 	protected function getExtensionFromFilename($filename = null) {
 		if(!empty($filename)) {
 			$ext = explode('.', $filename);
@@ -101,15 +102,15 @@ class Document extends DocumentsAppModel {
 			return false;
 		}
 	}
-	
+
 	protected function encodeFilename(File $file = null, $ext = null) {
 		if(empty($ext)) {
 			$ext = $file->ext();
-		}		
+		}
 		$name = hash_file('sha256', $file->path) . '.' . $ext;
 		return $name;
 	}
-	
+
 	protected function moveToStorage(File $file = null, $name = null) {
 		if(!empty($file) && !empty($name)) {
 			$name = $this->getPath($name);
@@ -120,7 +121,7 @@ class Document extends DocumentsAppModel {
 			return false;
 		}
 	}
-	
+
 	protected function parseFile(File $file = null) {
 		if(!empty($file)) {
 			$this->data['Document'] = array();
@@ -135,9 +136,9 @@ class Document extends DocumentsAppModel {
 			return false;
 		}
 	}
-	
+
 	protected function parseUpload(Array $data = array()) {
-		if(!empty($data)) { 
+		if(!empty($data)) {
 			$this->data['Document'] = array();
 			if(empty($this->data['Document']['description'])) {
 				$this->data['Document']['description'] = $data['name'];
@@ -150,9 +151,9 @@ class Document extends DocumentsAppModel {
 			return false;
 		}
 	}
-	
+
 	// Model Callback Functions //
-	
+
 	public function afterFind($results, $primary = false) {
 		foreach($results as $key => $result) {
 			if(!empty($result['Document']['filename'])) {
@@ -162,7 +163,7 @@ class Document extends DocumentsAppModel {
 		}
 		return parent::afterFind($results, $primary);
 	}
-	
+
 	public function beforeDelete($cascade = true) {
 		if($this->exists()) {
 			$this->data = $this->read();
@@ -177,36 +178,36 @@ class Document extends DocumentsAppModel {
 		}
 		return parent::beforeDelete($cascade);
 	}
-	
+
 	// Main Storage Function //
-	
+
 	public function store($data = null) {
 		if(!empty($data)) {
-			
+
 			// Prep the Model //
-			
+
 			$this->create();
-			
+
 			// Parse the file into proper database format //
-			
+
 			if(is_a($data, 'File')) {
 				$this->parseFile($data);
 			} else {
 				$this->parseUpload($data);
 			}
-			
+
 			// Set the User Name //
-		
+
 			if(AuthComponent::user('id')) {
 				$this->data['Document']['user_id'] = AuthComponent::user('id');
 			} else {
 				$this->data['Document']['user_id'] = null;
 			}
-			
-			// Look for an entry //  
-			
-			$filename = $this->findByFilename($this->data['Document']['filename']); 
-			
+
+			// Look for an entry //
+
+			$filename = $this->findByFilename($this->data['Document']['filename']);
+
 			if(!empty($filename['Document']['id'])) {
 				// File Exists, Break off, Return that ID. //
 				$this->clear();
@@ -220,7 +221,7 @@ class Document extends DocumentsAppModel {
 				if($this->save()) {
 					$this->read();
 					return $this->id;
-				} else { 
+				} else {
 					return false;
 				}
 			}
@@ -228,21 +229,21 @@ class Document extends DocumentsAppModel {
 			return false;
 		}
 	}
-    
+
     // Clean Up Function //
-    
+
     public function clean() {
-        
+
         $folder = new Folder($this->getPath());
         $files = $folder->find();
-        
+
         foreach($files as $file) {
             if(!in_array($file, array('.', '..'))) {
-                
+
                 $test = $this->findByFilename($file);
-                
+
                 if(empty($test['Document']['id'])) {
-                    
+
                     if(unlink($this->getPath() . DS . $file)) {
                         $this->log("File Deleted: " . $file, LOG_INFO);
                     } else {

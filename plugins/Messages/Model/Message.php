@@ -11,12 +11,7 @@ class Message extends MessagesAppModel {
 	public $enumerations = array();
 	public $order = 'Message.modified DESC';
 	public $virtualFields = array(
-		'search' => 'CONCAT_WS("|",
-			Message.subject,
-			(SELECT GROUP_CONCAT(mr.email SEPARATOR "|") FROM message_recipients mr WHERE mr.message_id = Message.id),
-			(SELECT GROUP_CONCAT(mc.email SEPARATOR "|") FROM message_copies mc WHERE mc.message_id = Message.id),
-			(SELECT GROUP_CONCAT(mbc.email SEPARATOR "|") FROM message_blind_copies mbc WHERE mbc.message_id = Message.id)
-		)' 
+		'search' => 'Message.subject'
 	);
 
 	public $validate = array(
@@ -32,7 +27,7 @@ class Message extends MessagesAppModel {
 		),
 		'subject' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -42,7 +37,7 @@ class Message extends MessagesAppModel {
 		),
 		'body' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -51,7 +46,7 @@ class Message extends MessagesAppModel {
 			),
 		),
 	);
-	
+
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'Users.User',
@@ -61,7 +56,7 @@ class Message extends MessagesAppModel {
 			'order' => ''
 		)
 	);
-	
+
 	public $hasMany = array(
 		'MessageAttachment' => array(
 			'className' => 'Messages.MessageAttachment',
@@ -113,28 +108,28 @@ class Message extends MessagesAppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''	
+			'counterQuery' => ''
 		)
 	);
-	
+
 	public function push($message = '', $subject = '', $to = array(), $cc = array(), $bcc = array(), $attachments = array()) {
-		
+
 		// Create the Message Itself //
-		
-		$this->create(); 
+
+		$this->create();
 		$this->data['Message']['body'] = $message;
 		$this->data['Message']['subject'] = $subject;
-		
+
 		if(AuthComponent::user('id')) {
 			$this->data['Message']['user_id'] = AuthComponent::user('id');
 		}
-		
+
 		if(!$this->save()) {
-			return false; 
+			return false;
 		}
-		
+
 		// Parse Recievers
-		
+
 		if(!empty($to)) {
 			foreach($to as $id => $email) {
 				$this->MessageRecipient->create();
@@ -143,12 +138,12 @@ class Message extends MessagesAppModel {
 				$this->MessageRecipient->save();
 			}
 		} else {
-			$this->delete(); 
+			$this->delete();
 			return false;
 		}
-		
+
 		// Parse Carbon Copy
-		
+
 		if(!empty($cc)) {
 			foreach($cc as $id => $email) {
 				$this->MessageCopy->create();
@@ -157,9 +152,9 @@ class Message extends MessagesAppModel {
 				$this->MessageCopy->save();
 			}
 		}
-		
+
 		// Parse Blind Carbon Copy
-		
+
 		if(!empty($bcc)) {
 			foreach($bcc as $id => $email) {
 				$this->MessageBlindCopy->create();
@@ -167,10 +162,10 @@ class Message extends MessagesAppModel {
 				$this->MessageBlindCopy->data['MessageBlindCopy']['email'] = $email;
 				$this->MessageBlindCopy->save();
 			}
-		}	
-		
+		}
+
 		// Parse File Attachments //
-		
+
 		if(!empty($attachments)) {
 			foreach($attachments as $name => $file) {
 				$this->MessageAttachment->create();
@@ -178,47 +173,47 @@ class Message extends MessagesAppModel {
 				$this->MessageAttachment->data['MessageAttachment']['filename'] = $file;
 				$this->MessageAttachment->save();
 			}
-		}	
-		
-		return true;	
+		}
+
+		return true;
 	}
-	
+
 	public function pop() {
-	
+
 		$messages = $this->find('all', array('conditions' => array('Message.sent' => false)));
-		
+
 		foreach($messages as $message) {
-		
+
 			$this->id = $message['Message']['id'];
-			
+
 			$to = Hash::extract($message, 'MessageRecipient.{n}.email');
 			$cc = Hash::extract($message, 'MessageCopy.{n}.email');
 			$bcc = Hash::extract($message, 'MessageBlindCopy.{n}.email');
-			
+
 			$email = new CakeEmail('default');
 			$email->emailFormat('html');
 			$email->subject($message['Message']['subject']);
 			$email->to($to);
 			$email->cc($cc);
 			$email->bcc($bcc);
-			
+
 			if(!empty($message['MessageAttachment'])) {
-				
-				$attachments = array();	
+
+				$attachments = array();
 				$document = new Document();
-				
+
 				foreach($message['MessageAttachment'] as $attachment) {
 					$file = $document->findByFilename($attachment['filename']);
 					$attachments[$file['Document']['filename_clean']] = $file['Document']['File']->path;
 				}
 				$email->attachments($attachments);
 			}
-			
+
 			if($email->send($message['Message']['body'])) {
 				$this->saveField('sent', true);
-			}			
+			}
 		}
-		
+
 		return true;
 	}
 }
