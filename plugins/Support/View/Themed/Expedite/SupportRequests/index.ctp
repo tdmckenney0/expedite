@@ -14,7 +14,7 @@
 				<?php echo $this->Html->link($name, array($id, $show, $search), array('class' => 'button', 'style' => (($status == $id) ? 'font-style: italic;' : ''))); ?>
 			<?php endforeach; ?>
 		</div>
-		
+
 		<?php if(!empty($search) || !empty($status)): ?>
 			<div style="padding-left: 2em; display: inline;">
 				<?php echo $this->Html->link('Clear Search', array(0, $show, ''), array('class' => 'button')); ?>
@@ -29,6 +29,7 @@
 				<th><?php echo $this->Paginator->sort('support_request_type_id', 'Type', array('class' => "button")); ?></th>
 				<th><?php echo $this->Paginator->sort('support_request_status_id', 'Status', array('class' => "button")); ?></th>
 				<th><?php echo $this->Paginator->sort('requested_user_id', 'Created By', array('class' => "button")); ?></th>
+				<th><?php echo $this->Paginator->sort('type_of_action', 'Action Needed', array('class' => "button")); ?></th>
 				<th><?php echo $this->Paginator->sort('created', 'Created', array('class' => "button")); ?></th>
 				<?php if($this->Permissions->has('support_requests', 'delete')): ?>
 					<th>&nbsp;</th>
@@ -42,14 +43,15 @@
 					<td><?php echo h($ticket['SupportRequest']['title']); ?></td>
 					<td><?php echo h($ticket['SupportRequestType']['name']); ?>&nbsp;</td>
 					<td><?php echo h($ticket['SupportRequestStatus']['name']); ?>&nbsp;</td>
-					<td><?php echo $this->Html->link($ticket['User']['name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $ticket['User']['id']), array('class' => 'button', 'target' => '_blank')); ?>&nbsp;</td>
+					<td><?php echo $this->Html->link($ticket['User']['name'], array(' plugin ' => 'users', 'controller' => 'users', 'action' => 'view', $ticket['User']['id']), array('class' => 'button', 'target' => '_blank')); ?>&nbsp;</td>
+					<td><?php echo h($ticket['SupportRequest']['type_of_action']); ?>&nbsp;</td>
 					<td><?php echo h($ticket['SupportRequest']['created']); ?>&nbsp;</td>
-					<td class="actions" style="text-align: right;">						
+					<td class="actions" style="text-align: right;">
 						<?php if($this->Permissions->has('support_requests', 'delete')): ?>
 							<a href="<?php echo $this->Html->url(array('plugin' => 'support', 'controller' => 'support_requests', 'action' => 'delete', $ticket['SupportRequest']['id'], 'ext' => 'json')); ?>" class="delete button">
 								<span class="ui-icon ui-icon-trash"></span>
 							</a>
-						<?php endif; ?>						
+						<?php endif; ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>

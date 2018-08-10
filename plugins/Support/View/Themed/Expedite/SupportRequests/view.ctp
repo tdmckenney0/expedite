@@ -5,7 +5,7 @@
 		<li><a href="#overview">Overview</a></li>
 		<li><a href="#notes">Notes</a></li>
 	</ul>
-	
+
 	<div id="overview">
 		<?php if(!empty($this->request->data['SupportRequestStatus']['id'])): ?>
 			<div class="<?php echo h($this->request->data['SupportRequestStatus']['css_class']); ?>">
@@ -25,9 +25,10 @@
 				<legend>Description</legend>
 				<?php echo $this->Form->input('description', array('div' => false, 'label' => false)); ?>
 			</fieldset>
-			
+
 			<fieldset>
 				<legend>Details</legend>
+				<?php echo $this->Form->input('type_of_action'); ?>
 				<?php echo $this->Form->input('support_request_type_id'); ?>
 				<?php echo $this->Form->input('support_request_status_id'); ?>
 				<?php echo $this->Form->input('requested_user_id', array('options' => $users)); ?>
@@ -35,7 +36,7 @@
 			</fieldset>
 		<?php echo $this->Form->end(); ?>
 	</div>
-	
+
 	<div id="notes">
 		<?php echo $this->Form->create('SupportRequest', array('url' => array('ext' => 'json'))); ?>
 			<?php echo $this->Form->input('notes', array('div' => false, 'label' => false)); ?>

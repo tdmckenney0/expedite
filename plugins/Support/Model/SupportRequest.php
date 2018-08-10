@@ -7,8 +7,16 @@ App::uses('CakeTime', 'Utility');
 class SupportRequest extends SupportAppModel {
 
 	public $displayField = 'title';
-	public $enumerations = array();
-	public $actsAs = array('Containable', 'Enumeration', 'Null'); 
+	public $enumerations = array(
+		'type_of_action' => array(
+			'report' => "Reporting",
+			'bug' => "Bug",
+			'feature' => "Feature",
+			'tweak' => "Small Fix",
+			'mystery' => "Mystery"
+		)
+	);
+	public $actsAs = array('Containable', 'Enumeration', 'Null');
 	public $virtualFields = array(
 		'name' => 'SupportRequest.title',
 		'search' => 'SupportRequest.title'
@@ -75,6 +83,16 @@ class SupportRequest extends SupportAppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'type_of_action' => array(
+			'notempty' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	public $belongsTo = array(
@@ -105,31 +123,31 @@ class SupportRequest extends SupportAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		) 
+		)
 	);
-	
+
 	public function beforeSave($options = array()) {
-	
+
 		/* Requested User */
-		
+
 			if(empty($this->data['SupportRequest']['requested_user_id'])) {
 				$this->data['SupportRequest']['requested_user_id'] = AuthComponent::user('id');
-			}		
-			
+			}
+
 		/* Closing User*/
-		
+
 			if(!empty($this->data['SupportRequest']['is_closed'])) {
 				$this->data['SupportRequest']['closing_user_id'] = AuthComponent::user('id');
 				$this->data['SupportRequest']['closing_date'] = CakeTime::toServer(new DateTime());
 			}
-			
+
 		return parent::beforeSave($options);
 	}
-	
+
 	public function afterSave($created, $options = array()) {
 		$this->read();
 		$message = new Message();
-		$users = $this->User->UserGroup->getUserEmailListInGroup(21); // Expedite Group
+		$users = $this->User->UserGroup->getUserEmailListInGroup(1); // Expedite Group
 		$message->push($this->data['SupportRequest']['description'] . '<br />' . $this->data['SupportRequest']['notes'], $this->data['SupportRequest']['title'] . ' [' . $this->data['SupportRequestStatus']['name'] . ']', $users, null, null, null);
 		return parent::afterSave($created, $options);
 	}

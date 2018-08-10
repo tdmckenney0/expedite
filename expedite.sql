@@ -52,6 +52,7 @@ CREATE TABLE `support_requests` (
   `modified` datetime NOT NULL,
   `closing_date` datetime DEFAULT NULL,
   `title` varchar(255) NOT NULL,
+	`type_of_action` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `notes` text,
   `file` varchar(255) DEFAULT NULL
