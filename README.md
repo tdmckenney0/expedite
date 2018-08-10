@@ -1,5 +1,7 @@
 # Expedite: Data Management System
 
+A quick solution to managing data in an office setting.
+
 ## Requirements
 
  - Sqlite 3
