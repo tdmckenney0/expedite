@@ -14,7 +14,7 @@ class Office extends AppModel {
 	public $validate = array(
 		'address' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -24,7 +24,7 @@ class Office extends AppModel {
 		),
 		'city' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -38,7 +38,7 @@ class Office extends AppModel {
 		),
 		'state' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -48,7 +48,7 @@ class Office extends AppModel {
 		),
 		'zip' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -58,7 +58,7 @@ class Office extends AppModel {
 		),
 		'phone' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

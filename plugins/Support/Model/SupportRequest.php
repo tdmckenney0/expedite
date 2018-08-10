@@ -47,7 +47,7 @@ class SupportRequest extends SupportAppModel {
 		),
 		'title' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -67,7 +67,7 @@ class SupportRequest extends SupportAppModel {
 		),
 		'description' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

@@ -37,7 +37,7 @@ class Document extends DocumentsAppModel {
 		),
 		'filename' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -47,7 +47,7 @@ class Document extends DocumentsAppModel {
 		),
 		'description' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -57,7 +57,7 @@ class Document extends DocumentsAppModel {
 		),
 		'mimetype' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

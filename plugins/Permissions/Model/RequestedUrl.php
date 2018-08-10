@@ -23,7 +23,7 @@ class RequestedUrl extends PermissionsAppModel {
 		),
 		'controller' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,
@@ -33,7 +33,7 @@ class RequestedUrl extends PermissionsAppModel {
 		),
 		'action' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				'required' => true,

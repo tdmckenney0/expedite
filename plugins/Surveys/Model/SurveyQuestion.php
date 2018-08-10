@@ -9,7 +9,7 @@ class SurveyQuestion extends SurveysAppModel {
 	public $validate = array(
 		'question' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

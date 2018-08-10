@@ -16,7 +16,7 @@ class User extends AppModel {
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -26,7 +26,7 @@ class User extends AppModel {
 		),
 		'password' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -36,7 +36,7 @@ class User extends AppModel {
 		),
 		'first_name' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -46,7 +46,7 @@ class User extends AppModel {
 		),
 		'last_name' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

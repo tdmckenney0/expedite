@@ -9,7 +9,7 @@ class SupportRequestType extends SupportAppModel {
 	public $validate = array(
 		'name' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
+				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
