@@ -72,17 +72,23 @@ CREATE TABLE `surveys` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `name` varchar(255) NOT NULL
 );
+INSERT INTO `surveys` VALUES (1, 'Test Survey');
 CREATE TABLE `survey_questions` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `survey_section_id` int(10) NOT NULL,
   `survey_question_type_id` int(10) NOT NULL,
   `question` varchar(300) NOT NULL
 );
+INSERT INTO `survey_questions` VALUES (1, 1, 1, 'Is this a test question?');
+INSERT INTO `survey_questions` VALUES (2, 1, 4, 'Favorite Color?');
 CREATE TABLE `survey_question_choices` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `survey_question_id` int(10) NOT NULL,
   `choice` varchar(255) NOT NULL
 );
+INSERT INTO `survey_question_choices` VALUES (1, 2, 'Red');
+INSERT INTO `survey_question_choices` VALUES (2, 2, 'Green');
+INSERT INTO `survey_question_choices` VALUES (3, 2, 'Blue');
 CREATE TABLE `survey_question_responses` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `user_id` int(10) NOT NULL,
@@ -93,11 +99,14 @@ CREATE TABLE `survey_question_types` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `name` varchar(255) NOT NULL
 );
+INSERT INTO `survey_question_types` VALUES (1, 'Boolean');
+INSERT INTO `survey_question_types` VALUES (4, 'Multiple Choice');
 CREATE TABLE `survey_sections` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `survey_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL
 );
+INSERT INTO `survey_sections` VALUES (1, 1, 'Test Survey Section');
 CREATE TABLE `templates` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `template_type_id` int(10) NOT NULL,
