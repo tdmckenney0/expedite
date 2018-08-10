@@ -81,10 +81,16 @@ class Document extends DocumentsAppModel {
 
 	protected function getPath($name = null) {
 		$path = array(ROOT, 'plugins', 'Documents', 'Storage');
-		if(!empty($name)) {
-			$path[] = $name;
+		$path = implode(DS, $path);
+
+		if(!file_exists($path)) {
+			mkdir($path);
 		}
-		return implode(DS, $path);
+
+		if(!empty($name)) {
+			$path .= DS . $name;
+		}
+		return trim($path);
 	}
 
 	protected function getExtensionFromFilename($filename = null) {
