@@ -63,9 +63,10 @@ Cache::config('default', array('engine' => 'File'));
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more
  * advanced ways of loading plugins
  */
- 
+
 	CakePlugin::loadAll(array(
-		'Users' => array('bootstrap' => true, 'routes' => true)
+		'Users' => array('bootstrap' => true, 'routes' => true),
+		'Support' => array('routes' => true)
     ));
 
 /**

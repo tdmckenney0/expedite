@@ -1,10 +1,15 @@
 # Expedite: Data Management System
 
-Developed by: Tanner Mckenney, 2016. 
+## Requirements
 
-Colloborative Database Software. 
+ - Sqlite 3
+ - PHP 7.1<
+ - Composer
 
-[![CakePHP](http://cakephp.org/img/cake-logo.png)](http://www.cakephp.org)
+## Installation
 
-CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.
-Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
+1. Run `composer install` to install composer's components.
+2. Run `cat expedite.sql | sqlite3 expedite.sqlite` in the root of the project.
+3. Run `php -S localhost:7070`
+4. Navigate to `http://localhost:7070/`
+5. Login with User name `expedite` and password `expedite`

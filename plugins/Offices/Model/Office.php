@@ -8,13 +8,7 @@ class Office extends AppModel {
 	public $actsAs = array('Containable');
 	public $virtualFields = array(
 		'name' => 'Office.city',
-		'search' => 'CONCAT_WS("|",
-			Office.city,
-			Office.address,
-			Office.state,
-			Office.zip,
-			Office.phone
-		)' 
+		'search' => 'Office.city'
 	);
 
 	public $validate = array(
@@ -73,7 +67,7 @@ class Office extends AppModel {
 			),
 		),
 	);
-    
+
     public $hasAndBelongsToMany = array(
         'User' => array(
 			'className' => 'Users.User',

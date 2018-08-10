@@ -8,18 +8,11 @@ class User extends AppModel {
 	public $actsAs = array('Containable', 'Documents.Documents' => array('fieldname' => 'image'));
 	public $order = array("User.last_name" => 'asc', 'User.first_name' => 'asc');
 	public $virtualFields = array(
-		'fullname' => 'CONCAT(User.first_name, " ", User.last_name)', 							  
-		'name' => 'CONCAT(User.first_name, " ", User.last_name)',
-		'search' => 'CONCAT_WS("|",
-			User.first_name,
-			User.last_name,
-			User.email,
-			User.phone,
-			User.title,
-			User.username
-		)'
+		'fullname' => 'User.first_name',
+		'name' => 'User.first_name',
+		'search' => 'User.email'
 	);
-	
+
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
@@ -119,28 +112,28 @@ class User extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-	
+
 	/* Callbacks */
-	
+
 	public function beforeSave($options = array()) {
 		$this->update_password();
-		return parent::beforeSave($options); 
+		return parent::beforeSave($options);
 	}
-	
+
 	public function afterSave($created, $options = array()) {
 		$this->update_session();
-		return parent::afterSave($created, $options); 
+		return parent::afterSave($created, $options);
 	}
-	
+
 	/* Methods */
-	
+
 	public function findByGroup($id = null) {
 		if(!empty($id)) {
 			$users = $this->UserGroup->find('first', array(
 				'contain' => array('User'),
 				'conditions' => array(
 					'UserGroup.id' => $id
-				)												   
+				)
 			));
 			$_users = array();
 			foreach($users['User'] as $user) {
@@ -148,18 +141,18 @@ class User extends AppModel {
 			}
 			return $_users;
 		} else {
-			return false; 
+			return false;
 		}
 	}
-	
-	public function update_password() {			
+
+	public function update_password() {
 		if(!empty($this->data[$this->alias]['change_password'])) {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 		} else {
 			unset($this->data[$this->alias]['password']);
 		}
 	}
-	
+
 	public function update_session() {
 		if($this->id == AuthComponent::User('id')) {
 			$user = $this->find('first', array(
@@ -167,7 +160,7 @@ class User extends AppModel {
 				'conditions' => array('User.id' => $this->id)
 			));
 			unset($user['User']['password']);
-			CakeSession::write('Auth.User', array_merge(AuthComponent::User(), $user['User'])); 
-		} 
+			CakeSession::write('Auth.User', array_merge(AuthComponent::User(), $user['User']));
+		}
 	}
 }

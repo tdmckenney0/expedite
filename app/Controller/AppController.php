@@ -32,9 +32,9 @@ App::uses('CakePluginPolling', 'Vendor');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    
-    public $theme = 'Expedite'; 
-    
+
+    public $theme = 'Expedite';
+
 	public $components = array(
 		'Auth' => array(
 			'loginAction' => array(
@@ -51,15 +51,15 @@ class AppController extends Controller {
 						'UserGroup'
 					)
 				)
-			) 
+			)
 		),
-		'StackMessages', 
-		'Session', 
+		'StackMessages',
+		'Session',
 		'Cookie',
 		'RequestHandler',
 		'Permissions'
 	);
-    
+
 	public $helpers = array(
 		'Html', 'Time', 'Number',
 		'Form' => array(

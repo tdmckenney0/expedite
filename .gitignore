@@ -1,10 +1,9 @@
 # User specific & automatically generated files #
 #################################################
-/app/Config/database.php
 /app/tmp/
-/lib/Cake/Console/Templates/skel/tmp/
 /plugins/Documents/Storage/
-/vendors
+/vendor
+/Plugin/DebugKit
 /build
 /dist
 /tags
@@ -25,3 +24,7 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Database #
+############
+*.sqlite
