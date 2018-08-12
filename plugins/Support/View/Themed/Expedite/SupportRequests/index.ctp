@@ -43,7 +43,7 @@
 					<td><?php echo h($ticket['SupportRequest']['title']); ?></td>
 					<td><?php echo h($ticket['SupportRequestType']['name']); ?>&nbsp;</td>
 					<td><?php echo h($ticket['SupportRequestStatus']['name']); ?>&nbsp;</td>
-					<td><?php echo $this->Html->link($ticket['User']['name'], array(' plugin ' => 'users', 'controller' => 'users', 'action' => 'view', $ticket['User']['id']), array('class' => 'button', 'target' => '_blank')); ?>&nbsp;</td>
+					<td><?php echo $this->Html->link($ticket['User']['name'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $ticket['User']['id']), array('class' => 'button', 'target' => '_blank')); ?>&nbsp;</td>
 					<td><?php echo h($ticket['SupportRequest']['type_of_action']); ?>&nbsp;</td>
 					<td><?php echo h($ticket['SupportRequest']['created']); ?>&nbsp;</td>
 					<td class="actions" style="text-align: right;">
