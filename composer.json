@@ -1,0 +1,16 @@
+{
+    "name": "tannermckenney/expedite",
+    "description": "Expedite: Data Management System",
+    "type": "project",
+    "require": {
+        "cakephp/cakephp": "^3.6",
+        "twbs/bootstrap": "^4.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tanner Mckenney",
+            "email": "tmckenney7@outlook.com"
+        }
+    ]
+}
