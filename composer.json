@@ -1,7 +1,8 @@
 {
     "name": "expedite",
     "require": {
-        "cakephp/cakephp": "^2.0.0"
+        "cakephp/cakephp": "^2.0.0",
+        "twbs/bootstrap": "^4.2"
     },
     "config": {
         "vendor-dir": "Vendor/"

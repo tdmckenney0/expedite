@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94ec2e04e69aa0c9d6d10c6a4f90297f",
+    "content-hash": "3e38d0ec8e5c9704b68de39512dcae85",
     "packages": [
         {
             "name": "cakephp/cakephp",
-            "version": "2.10.11",
+            "version": "2.10.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "98c7fa1c97b26097c923cd3481a8a2114e23fe4f"
+                "reference": "1dc3219f22e5b1d0ae63e026ea8a5efaf781f356"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/98c7fa1c97b26097c923cd3481a8a2114e23fe4f",
-                "reference": "98c7fa1c97b26097c923cd3481a8a2114e23fe4f",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1dc3219f22e5b1d0ae63e026ea8a5efaf781f356",
+                "reference": "1dc3219f22e5b1d0ae63e026ea8a5efaf781f356",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,58 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-07-01T19:05:15+00:00"
+            "time": "2018-12-20T01:45:32+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
+                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "https://getbootstrap.com/",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "web"
+            ],
+            "time": "2018-12-21T18:55:28+00:00"
         }
     ],
     "packages-dev": [],

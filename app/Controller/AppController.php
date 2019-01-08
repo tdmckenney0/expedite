@@ -33,7 +33,7 @@ App::uses('CakePluginPolling', 'Vendor');
  */
 class AppController extends Controller {
 
-    public $theme = 'Expedite';
+    public $theme = 'Bootstrap';
 
 	public $components = array(
 		'Auth' => array(
